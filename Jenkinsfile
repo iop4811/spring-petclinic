@@ -29,6 +29,20 @@ pipeline {
                 sh 'mvn -Dmaven.test.failure.ignore=true clean package'
             }
         }
+        
+        // Docker Image 생성
+        stage('Docker Image Build') {
+            steps {
+                echo 'Docker Image Build'
+                dir("${env.WORKSPACE}") {
+                   sh '''
+                      docker build -t spring-petcilnic:$BUILD_NUMBER .
+                      docker tag spring-perclinic:$BUILD_NUMBER dlckstj/spring-petclinic:latest
+                      '''
+                }
+            }
+        }
+        
         stage('SSH Pulish') {
             steps {
                 echo 'SSH Pulish'

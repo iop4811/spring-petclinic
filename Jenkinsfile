@@ -66,12 +66,13 @@ pipeline {
                 transfers: [sshTransfer(cleanRemote: false, excludes: '',
                 execCommand: '''
                 docker rm -f $(docker ps -aq)
-                docker rmi $(docker image -q)
+                docker rmi $(docker images -q)
                 docker run -d -p 8080:8080 --name spring -petclinic dlckstj/spring-petclinic:latest
                 ''',
-                execTimeout: 120000, 
-                flatten: false, makeEmptyDirs: false, 
-                noDefaultExcludes: false, patternSeparator: '[, ]+', 
+                execTimeout: 120000, flatten: false,
+                makeEmptyDirs: false, 
+                noDefaultExcludes: false,
+                patternSeparator: '[, ]+', 
                 remoteDirectory: '', 
                 remoteDirectorySDF: false, 
                 removePrefix: 'target', 

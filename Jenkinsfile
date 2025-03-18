@@ -59,24 +59,25 @@ pipeline {
 
 
         
-        stage('SSH Pulish') {
+         stage('SSH Publish') {
             steps {
-                echo 'SSH Pulish'
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'target',
-                transfers: [sshTransfer(cleanRemote: false, excludes: '',
+                echo 'SSH Publish'
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'target', 
+                transfers: [sshTransfer(cleanRemote: false, excludes: '', 
                 execCommand: '''
                 docker rm -f $(docker ps -aq)
                 docker rmi $(docker images -q)
                 docker run -d -p 8080:8080 --name spring-petclinic dlckstj/spring-petclinic:latest
                 ''',
-                execTimeout: 120000, flatten: false,
+                execTimeout: 120000, 
+                flatten: false, 
                 makeEmptyDirs: false, 
-                noDefaultExcludes: false,
+                noDefaultExcludes: false, 
                 patternSeparator: '[, ]+', 
                 remoteDirectory: '', 
                 remoteDirectorySDF: false, 
                 removePrefix: 'target', 
-                sourceFiles: 'target/*.jar')],
+                sourceFiles: 'target/*.jar')], 
                 usePromotionTimestamp: false, 
                 useWorkspaceInPromotion: false, verbose: false)])
             }

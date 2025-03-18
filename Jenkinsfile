@@ -57,7 +57,7 @@ pipeline {
             }
         }
 
-         // Remove Docker Image
+        // Remove Docker Image
         stage('Remove Docker Image') {
             steps {
                 sh '''

@@ -51,7 +51,7 @@ pipeline {
         stage('Docker Image Push') {
             steps {
                 sh '''
-                   echo DOCKERHUB_CRDENTIALS_PSW | docker login -u $DOCKERHUB_CRDENTIALS_USR --password-stdin
+                   echo $DOCKERHUB_CRDENTIALS_PSW | docker login -u $DOCKERHUB_CRDENTIALS_USR --password-stdin
                    docker push dlckstj/spring-petclinic:latest
                    '''
             }

@@ -8,6 +8,8 @@ pipeline {
 
     environment {
         DOCKERHUB_CRDENTIALS = credentials('dockerCredential')
+        REGION = "ap-northeast-2"
+        AWS_CREDENTIALS_NAME = "AWSCredentials"
     }
     
     stages {
@@ -66,6 +68,8 @@ pipeline {
                 '''
             }
         }
+    }
+}
          stage('SSH Publish') {
             steps {
                 echo 'SSH Publish'
